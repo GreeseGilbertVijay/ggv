@@ -1,0 +1,27 @@
+{
+  "home": {
+    "hiThere": "HI THERE!",
+    "im": "I'M",
+    "name": "GREESE GILBERT VIJAY",
+    "roles": [
+      "Web Developer",
+      "Wordpress Developer",
+      "Apk Developer",
+      "React + Vite Developer",
+      "Next Js Developer",
+      "Backend Developer"
+    ],
+    "ready": "Ready To Handle Your New Project",
+    "description": "I'm an experienced Web Developer specializing in React and WordPress. I have built websites and web apps that work well on different devices using tools like React.js, Next.js, WordPress, HTML, CSS, JavaScript, Bootstrap, and Tailwind CSS.",
+    "moreAboutMe": "More About Me"
+  },
+  "about": {
+    "aboutme":"About Me",
+    "description":"As a web developer, I specialize in crafting responsive and user-friendly websites that prioritize an exceptional user experience. I ensure that all projects are optimized for both desktop and mobile devices, delivering seamless functionality across platforms.",
+    "Whatido":"What I Do",
+    "Works": "Works"
+  },
+  "services": {
+    "services":"Services"
+  }
+}

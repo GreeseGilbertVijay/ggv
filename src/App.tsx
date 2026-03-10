@@ -10,7 +10,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <BrowserRouter>
+        <BrowserRouter basename="/ggv">
           <Navbar />
           <GlobalRightNav />
           <Routes>

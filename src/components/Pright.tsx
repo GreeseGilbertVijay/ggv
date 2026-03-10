@@ -177,7 +177,7 @@ const Pright: React.FC = () => {
           className="relative z-30 w-[65%] md:w-[70%] rounded-full border-8 border-white dark:border-slate-700 shadow-2xl overflow-hidden bg-white dark:bg-slate-800"
         >
           <img
-            src="/GreeseGilbertVijays.png"
+            src="dist/GreeseGilbertVijay.png"
             alt="Profile"
             className="w-full h-full object-cover"
           />
@@ -206,7 +206,7 @@ const Pright: React.FC = () => {
             />
             <image
               ref={arrowImageRef}
-              href="/favicon.png"
+              href="dist/favicon.png"
               x={arrowX}
               y={arrowY}
               width={25}

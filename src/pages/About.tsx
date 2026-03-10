@@ -90,7 +90,7 @@ const About: React.FC = () => {
           {/* Image at line end */}
           <img
             id="about-line-image"
-            src="/favicon.png" // change path as needed
+            src="dist/favicon.png" // change path as needed
             alt="About icon"
             className="w-5 h-5 opacity-0 mr-4"
           />

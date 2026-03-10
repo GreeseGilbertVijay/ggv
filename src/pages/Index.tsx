@@ -10,8 +10,8 @@ const Index = () => {
     <>
       <section id="Home"><Home /></section>
       <section id="About"><About /></section>
-      <section id="Projects"><Projects /></section>
       <section id="Services"><Services /></section>
+      <section id="Projects"><Projects /></section>
       <section id="Sample"><Sample /></section>
     </>
   );

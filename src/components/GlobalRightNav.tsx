@@ -31,7 +31,6 @@ const scrollToSection = (id: string, hash: string) => {
 const getIconStyles = (index: number, total: number) => {
   const spacing = 60;
   const startTop = 280 - ((total - 1) * spacing) / 2;
-
   return {
     top: `${startTop + index * spacing}px`,
     left: "50%",
@@ -39,14 +38,13 @@ const getIconStyles = (index: number, total: number) => {
   };
 };
 
-
 const GlobalRightNav: React.FC = () => {
   const navRef = useRef<HTMLDivElement | null>(null);
   const iconsRef = useRef<Array<HTMLDivElement | null>>([]);
   const lineRef = useRef<SVGLineElement | null>(null);
-  const endImageRef = useRef<HTMLImageElement | null>(null);
+  const endImageRef = useRef<SVGImageElement | null>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
-
+  const hasAnimatedIn = useRef(false);
 
   const [activeSection, setActiveSection] = useState("Home");
 
@@ -55,8 +53,11 @@ const GlobalRightNav: React.FC = () => {
     const triggers: ScrollTrigger[] = [];
 
     navItems.forEach((item) => {
+      const targetElement = document.getElementById(item.id);
+      if (!targetElement) return;
+
       const trigger = ScrollTrigger.create({
-        trigger: `#${item.id}`,
+        trigger: targetElement,
         start: "top center",
         end: "bottom center",
         onEnter: () => setActiveSection(item.id),
@@ -71,116 +72,125 @@ const GlobalRightNav: React.FC = () => {
     };
   }, []);
 
-  // MAIN ANIMATION CONTROLLER
+  // Hide/show nav based on active section
   useEffect(() => {
     if (!navRef.current) return;
 
-    timelineRef.current?.kill();
-
-    // HOME → HIDE NAV
     if (activeSection === "Home") {
+      // Hide nav when on Home
       gsap.to(navRef.current, {
         opacity: 0,
+        x: 30,
         pointerEvents: "none",
-        duration: 0.3,
+        duration: 0.4,
+        ease: "power2.in",
       });
+      // Reset so animation replays when coming back
+      hasAnimatedIn.current = false;
       return;
     }
 
-    // SHOW NAV
-    gsap.set(navRef.current, {
-      opacity: 1,
-      pointerEvents: "auto",
-    });
+    // First time entering a non-Home section → play full intro animation
+    if (!hasAnimatedIn.current) {
+      hasAnimatedIn.current = true;
 
-    // RESET STATES
-    gsap.set(iconsRef.current, { y: -40, opacity: 0 });
-    
-    if (lineRef.current) {
-      const length = lineRef.current.getTotalLength();
-    
-      gsap.set(lineRef.current, {
-        strokeDasharray: length,
-        strokeDashoffset: length,
-      });
-    }
-    
-    if (endImageRef.current) {
-      gsap.set(endImageRef.current, {
-        opacity: 0,
-        scale: 0,
-        transformOrigin: "center center",
-      });
-    }
+      // Make nav visible but prep elements for animation
+      gsap.set(navRef.current, { opacity: 1, x: 0, pointerEvents: "auto" });
+      gsap.set(iconsRef.current, { y: -30, opacity: 0 });
 
-    
-    const tl = gsap.timeline();
-    timelineRef.current = tl;
+      if (lineRef.current) {
+        const length = lineRef.current.getTotalLength();
+        gsap.set(lineRef.current, {
+          strokeDasharray: length,
+          strokeDashoffset: length,
+        });
+      }
 
-    // ICONS → SLIDE FROM TOP
-    tl.to(iconsRef.current, {
-      y: 0,
-      opacity: 1,
-      stagger: 0.15,
-      duration: 0.45,
-      ease: "power3.out",
-    })
+      if (endImageRef.current) {
+        gsap.set(endImageRef.current, { opacity: 0, scale: 0, transformOrigin: "center center" });
+      }
 
-    tl.to(lineRef.current, {
-      strokeDashoffset: 0,
-      duration: 0.6,
-      ease: "power2.out",
-    })
-    .to(
-      endImageRef.current,
-      {
+      timelineRef.current?.kill();
+      const tl = gsap.timeline();
+      timelineRef.current = tl;
+
+      // Slide icons in from top
+      tl.to(iconsRef.current, {
+        y: 0,
         opacity: 1,
-        scale: 1,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-      },
-      "-=0.15"
-    );
+        stagger: 0.12,
+        duration: 0.45,
+        ease: "power3.out",
+      });
+
+      // Draw the line
+      tl.to(
+        lineRef.current,
+        {
+          strokeDashoffset: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.2"
+      );
+
+      // Pop in the end image
+      tl.to(
+        endImageRef.current,
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: "back.out(1.7)",
+        },
+        "-=0.15"
+      );
+    } else {
+      // Already animated in → just ensure it's visible (no replay)
+      gsap.to(navRef.current, {
+        opacity: 1,
+        x: 0,
+        pointerEvents: "auto",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
   }, [activeSection]);
 
   return (
     <div
       ref={navRef}
-      className="
-        fixed right-6 top-1/2 -translate-y-1/2
-        z-50 w-[70px]
-        flex justify-center items-center
-        opacity-0
-      "
+      className="fixed right-6 top-1/2 -translate-y-1/2 z-50 w-[70px] flex justify-center items-center opacity-0"
+      style={{ pointerEvents: "none" }}
     >
       <div className="relative w-full h-[600px] flex justify-center items-center">
         {/* Vertical Line */}
         <svg
-  width="40"
-  height="70vh"
-  viewBox="0 0 40 500"
-  preserveAspectRatio="none"
-  className="absolute pointer-events-none"
->
-  <line
-    ref={lineRef}
-    x1="20"
-    y1="50"
-    x2="20"
-    y2="800"
-    stroke="#FDDA0D"
-    strokeWidth={4}
-    strokeLinecap="round"
-  />
-
-  <image
-    href="/favicon.png"
-    x="8"
-    y="95%"
-    width="25"
-    height="25"
-  />
-</svg>
+          width="40"
+          height="50vh"
+          viewBox="0 0 40 500"
+          preserveAspectRatio="none"
+          className="absolute pointer-events-none"
+        >
+          <line
+            ref={lineRef}
+            x1="20"
+            y1="50"
+            x2="20"
+            y2="800"
+            stroke="#FDDA0D"
+            strokeWidth={4}
+            strokeLinecap="round"
+          />
+          <image
+            ref={endImageRef}
+            href="dist/favicon.png"
+            x="8"
+            y="95%"
+            width="25"
+            height="25"
+          />
+        </svg>
 
         {/* Icons */}
         {navItems.map((item, index) => {
@@ -198,28 +208,36 @@ const GlobalRightNav: React.FC = () => {
             >
               <div
                 className={`
-                  w-8 h-8 sm:w-8 sm:h-8 lg:w-11 lg:h-11
-                  bg-white dark:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-600 shadow-lg
-                  flex items-center justify-center text-slate-600 dark:text-slate-200
-                  transition-all duration-300
-                  group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110
+                  flex items-center justify-center rounded-full border shadow-lg
                   cursor-pointer
-                  ${isActive
-                    ? "bg-yellow-400 dark:bg-yellow-400 scale-110"
-                    : "hover:bg-blue-600 hover:text-white hover:scale-110"}
+                  transition-all duration-300 ease-out
+                  ${
+                    isActive
+                      ? // Active: large, yellow background
+                        "w-12 h-12 bg-yellow-400 dark:bg-yellow-400 text-slate-900 border-yellow-300 scale-110 shadow-yellow-200/60 dark:shadow-yellow-400/30"
+                      : // Inactive: smaller, default style
+                        "w-8 h-8 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-200 border-slate-100 dark:border-slate-600 hover:bg-blue-600 hover:text-white hover:scale-110"
+                  }
                 `}
-                
               >
-                {item.icon}
+                {/* Render icon with larger size when active */}
+                {React.isValidElement(item.icon)
+                  ? React.cloneElement(item.icon as React.ReactElement<{ size?: number }>, {
+                      size: isActive ? 22 : 18,
+                    })
+                  : item.icon}
               </div>
 
+              {/* Tooltip */}
               <span
                 className="
-                  absolute right-full top-1/2 -translate-y-1/2
+                  absolute right-full top-1/2 -translate-y-1/2 mr-2
                   px-2 py-1 text-[10px]
                   bg-slate-800 text-white rounded
                   opacity-0 group-hover:opacity-100
                   whitespace-nowrap
+                  transition-opacity duration-200
+                  pointer-events-none
                 "
               >
                 {item.label}

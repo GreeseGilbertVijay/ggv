@@ -79,7 +79,7 @@ const Services: React.FC = () => {
 
             {/* Icon */}
             <img
-              src="/favicon.png"
+              src="dist/favicon.png"
               alt="services icon"
               className="services-line-image w-5 h-5 opacity-0 mr-4"
             />

@@ -30,5 +30,16 @@
   },
   "portfolio": {
     "title":"Portfolio"
+  },
+  "contact": {
+    "miniheading":"Get in Touch",
+    "title":"Let's build",
+    "title1":"something",
+    "title2":"great",
+    "description":"Tell me about your project — I'll get back within 24 hours.",
+    "email":"Email",
+    "phone":"Phone",
+    "address":"Address"
   }
+
 }

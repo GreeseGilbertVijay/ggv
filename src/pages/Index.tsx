@@ -3,6 +3,7 @@ import About from "./About";
 import Services from "./Services";
 import Projects from "./Projects";
 import Portfolio from "./Portfolio";
+import Contact from "./Contact";
 import Sample from "./Sample";
 
 
@@ -14,7 +15,7 @@ const Index = () => {
       <section id="Services"><Services /></section>
       <section id="Projects"><Projects /></section>
        <section id="Portfolio"><Portfolio /></section>
-      <section id="Sample"><Sample /></section>
+      <section id="Contact"><Contact /></section>
     </>
   );
 };

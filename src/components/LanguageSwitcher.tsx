@@ -3,8 +3,8 @@ import { Globe, ChevronDown } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 const languages = [
-  { code: "en" as const, name: "English", nativeName: "English" },
   { code: "ta" as const, name: "Tamil", nativeName: "தமிழ்" },
+  { code: "en" as const, name: "English", nativeName: "English" },
 ];
 
 const LanguageSwitcher: React.FC = () => {

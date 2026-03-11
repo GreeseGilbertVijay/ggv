@@ -214,7 +214,7 @@ const GlobalRightNav: React.FC = () => {
                   ${
                     isActive
                       ? // Active: large, yellow background
-                        "w-12 h-12 bg-yellow-400 dark:bg-yellow-400 text-slate-900 border-yellow-300 scale-110 shadow-yellow-200/60 dark:shadow-yellow-400/30"
+                        "w-10 h-10 bg-yellow-400 dark:bg-yellow-400 text-slate-900 border-yellow-300 scale-100 shadow-yellow-200/60 dark:shadow-yellow-400/30"
                       : // Inactive: smaller, default style
                         "w-8 h-8 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-white dark:bg-slate-700 text-slate-600 dark:text-slate-200 border-slate-100 dark:border-slate-600 hover:bg-blue-600 hover:text-white hover:scale-110"
                   }

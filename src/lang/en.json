@@ -23,5 +23,12 @@
   },
   "services": {
     "services":"Services"
+  },
+  "projects": {
+    "title":"My Works",
+    "subtitle":"These are the websites that I have developed"
+  },
+  "portfolio": {
+    "title":"Portfolio"
   }
 }

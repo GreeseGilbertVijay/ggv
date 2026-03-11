@@ -26,5 +26,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/components/Pleft.tsx"]
+  "include": ["src", "src/components/Hleft.tsx"]
 }

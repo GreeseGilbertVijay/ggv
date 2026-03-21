@@ -4,7 +4,6 @@ import Services from "./Services";
 import Projects from "./Projects";
 import Portfolio from "./Portfolio";
 import Contact from "./Contact";
-import Sample from "./Sample";
 
 
 const Index = () => {
@@ -14,7 +13,7 @@ const Index = () => {
       <section id="About"><About /></section>
       <section id="Services"><Services /></section>
       <section id="Projects"><Projects /></section>
-       <section id="Portfolio"><Portfolio /></section>
+      <section id="Portfolio"><Portfolio /></section>
       <section id="Contact"><Contact /></section>
     </>
   );

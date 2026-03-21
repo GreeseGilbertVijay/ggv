@@ -46,7 +46,7 @@ const sliderTwo = logos.slice(10);
 /* ----------------------------------
    Component
 ----------------------------------- */
-const PartnersLogoSlider: React.FC = () => {
+const Projects: React.FC = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const slider1Ref = useRef<HTMLDivElement>(null);
   const slider2Ref = useRef<HTMLDivElement>(null);
@@ -205,4 +205,4 @@ const PartnersLogoSlider: React.FC = () => {
   );
 };
 
-export default PartnersLogoSlider;
+export default Projects;

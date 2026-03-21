@@ -65,7 +65,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col items-start justify-center">
+      <div className="flex flex-col items-start justify-center pt-12">
         <h3 className="text-xl lg:text-3xl md:text-4xl text-[#ffb931] dark:text-amber-400 font-black">
           {t("home.hiThere")}
         </h3>

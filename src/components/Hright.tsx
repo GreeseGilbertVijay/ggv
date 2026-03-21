@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Home, User, Code2, Briefcase, Mail } from "lucide-react";
+import { Home, User, Code2, Briefcase, Monitor, Mail } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,17 +12,18 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { icon: <Home size={20} />, label: "Home", hash: "#Home" },
+    { icon: <Home size={20} />, label: "Home", hash: "#Home" },
   { icon: <User size={20} />, label: "About", hash: "#About" },
-  { icon: <Code2 size={20} />, label: "Projects", hash: "#Projects" },
   { icon: <Briefcase size={20} />, label: "Services", hash: "#Services" },
+  { icon: <Code2 size={20} />, label: "Projects", hash: "#Projects" },
+  { icon: <Monitor size={20} />, label: "Portfolio", hash: "#Portfolio" },
   { icon: <Mail size={20} />, label: "Contact", hash: "#Contact" },
 ];
 
 // FIX 1: Compute responsive values from a width number — pure function, no direct window access
 const computeResponsiveValues = (width: number) => {
   if (width < 640) {
-    return { radius: 130, arrowX: 190, arrowY: 355, svgSize: 390 };
+    return { radius: 130, arrowX: 170, arrowY: 330, svgSize: 360 };
   } else if (width < 1024) {
     return { radius: 150, arrowX: 240, arrowY: 460, svgSize: 500 };
   }
@@ -35,7 +36,7 @@ const getIconStyles = (index: number, total: number, width: number) => {
   const isTablet = width >= 640 && width < 1024;
 
   const radius = isMobile ? 95 : isTablet ? 135 : 180;
-  const spread = isMobile ? 1.55 : isTablet ? 1.65 : 1.25;
+  const spread = isMobile ? 1.70 : isTablet ? 1.65 : 1.25;
   const startAngle = -50;
   const endAngle = 50;
 
@@ -142,14 +143,23 @@ const Pright: React.FC = () => {
   return (
     <section
       ref={containerRef}
-      className="relative flex items-center justify-center min-h-[auto] w-full overflow-hidden py-12"
+      className="relative flex items-center justify-center w-full overflow-hidden py-12"
     >
-      <div className="relative flex items-center justify-center w-[500px] h-[500px]">
+      <style>{`
+       .height{
+          height: 500px;
+        }
+      @media (max-width: 639px) {
+        .height{
+          height: 400px;
+        }
+      `}</style>
+      <div className="height relative flex items-center justify-center pr-8 w-[500px]">
 
         {/* Profile */}
         <div
           ref={profileRef}
-          className="relative z-30 w-[65%] md:w-[70%] rounded-full border-8 border-white dark:border-slate-700 shadow-2xl overflow-hidden bg-white dark:bg-slate-800"
+          className="relative z-30 w-[70%] md:w-[70%] rounded-full border-8 border-white dark:border-slate-700 shadow-2xl overflow-hidden bg-white dark:bg-slate-800"
         >
           {/* FIX 6: Use a relative/public path or accept it as a prop */}
           <img
@@ -162,7 +172,7 @@ const Pright: React.FC = () => {
         {/* Wheel */}
         <div
           ref={wheelRef}
-          className="absolute inset-0 flex items-center justify-center z-10"
+          className="absolute inset-0 flex items-center pr-8 justify-center z-10"
         >
           {/* SVG Arrow */}
           <svg

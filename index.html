@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/ggv/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GGV</title>
+    <script type="module" crossorigin src="/ggv/assets/index-B5HTgB3E.js"></script>
+    <link rel="stylesheet" crossorigin href="/ggv/assets/index-BZnWNLo0.css">
+  </head>
+  <body>
+    <script>
+      (function () {
+        var k = "ggv-theme";
+        var s = localStorage.getItem(k);
+        var d = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var dark = s === "dark" || (s !== "light" && d);
+        document.documentElement.classList.add(dark ? "dark" : "light");
+      })();
+    </script>
+    <div id="root"></div>
+  </body>
+</html>

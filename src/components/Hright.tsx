@@ -163,7 +163,7 @@ const Pright: React.FC = () => {
         >
           {/* FIX 6: Use a relative/public path or accept it as a prop */}
           <img
-            src="dist/GreeseGilbertVijay.png"
+            src="public/GreeseGilbertVijay.png"
             alt="Profile"
             className="w-full h-full object-cover"
           />

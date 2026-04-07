@@ -18,26 +18,26 @@ type Logo = {
    Logo Data
 ----------------------------------- */
 const logos: Logo[] = [
-  { id: 1, src: "dist/Logos/1.png" },
-  { id: 2, src: "dist/Logos/2.png" },
-  { id: 3, src: "dist/Logos/3.png" },
-  { id: 4, src: "dist/Logos/4.png" },
-  { id: 5, src: "dist/Logos/5.png" },
-  { id: 6, src: "dist/Logos/6.png" },
-  { id: 7, src: "dist/Logos/7.png" },
-  { id: 8, src: "dist/Logos/8.png" },
-  { id: 9, src: "dist/Logos/9.png" },
-  { id: 10, src: "dist/Logos/10.png" },
-  { id: 11, src: "dist/Logos/11.png" },
-  { id: 12, src: "dist/Logos/12.png" },
-  { id: 13, src: "dist/Logos/13.png" },
-  { id: 14, src: "dist/Logos/14.png" },
-  { id: 15, src: "dist/Logos/15.png" },
-  { id: 16, src: "dist/Logos/16.png" },
-  { id: 17, src: "dist/Logos/17.png" },
-  { id: 18, src: "dist/Logos/18.png" },
-  { id: 19, src: "dist/Logos/19.png" },
-  { id: 20, src: "dist/Logos/20.png" },
+  { id: 1, src: "public/Logos/1.png" },
+  { id: 2, src: "public/Logos/2.png" },
+  { id: 3, src: "public/Logos/3.png" },
+  { id: 4, src: "public/Logos/4.png" },
+  { id: 5, src: "public/Logos/5.png" },
+  { id: 6, src: "public/Logos/6.png" },
+  { id: 7, src: "public/Logos/7.png" },
+  { id: 8, src: "public/Logos/8.png" },
+  { id: 9, src: "public/Logos/9.png" },
+  { id: 10, src: "public/Logos/10.png" },
+  { id: 11, src: "public/Logos/11.png" },
+  { id: 12, src: "public/Logos/12.png" },
+  { id: 13, src: "public/Logos/13.png" },
+  { id: 14, src: "public/Logos/14.png" },
+  { id: 15, src: "public/Logos/15.png" },
+  { id: 16, src: "public/Logos/16.png" },
+  { id: 17, src: "public/Logos/17.png" },
+  { id: 18, src: "public/Logos/18.png" },
+  { id: 19, src: "public/Logos/19.png" },
+  { id: 20, src: "public/Logos/20.png" },
 ];
 
 const sliderOne = logos.slice(0, 10);
@@ -145,7 +145,7 @@ const Projects: React.FC = () => {
           {/* Accent icon */}
           <img
             id="partners-accent-icon"
-            src="dist/favicon.png"
+            src="public/favicon.png"
             alt="Partners icon"
             className="w-5 h-5 opacity-0 mr-4"
           />

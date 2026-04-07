@@ -229,7 +229,7 @@ export default function ContactForm() {
         .dot-3 { animation: dotPulse 1.2s infinite 0.4s; }
       `}</style>
 
-      <div className="bg-[#f7f4ef] dark:bg-[#0e0c09] text-[#1a1714] dark:text-[#f0ece4] transition-colors duration-300">
+      <div className="bg-white dark:bg-slate-900 text-black dark:text-white transition-colors">
         <div
           className="w-full max-w-7xl mx-auto grid gap-16 px-6 py-16 sm:px-10 sm:py-20 md:grid-cols-1 lg:grid-cols-[44%_52%] lg:gap-12"
           ref={formRef}
@@ -246,7 +246,7 @@ export default function ContactForm() {
               />
               <img
                 id="contact-line-image"
-                src="dist/favicon.png"
+                src="public/favicon.png"
                 alt=""
                 aria-hidden="true"
                 className="w-4 h-4 opacity-0 shrink-0"

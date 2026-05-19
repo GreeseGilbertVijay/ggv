@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes textFill {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.animate-textFill {
+  background-image: url('https://spincobiotech.com/wp-content/uploads/2025/03/Spinco-Landinge-Page.jpg');
+  background-repeat: repeat-y;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFill 80s linear infinite;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+}

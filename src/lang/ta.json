@@ -1,0 +1,44 @@
+{
+  "home": {
+    "hiThere": "வணக்கம்!",
+    "im": "நான்",
+    "name": "கிரீஸ் கில்பர்ட் விஜய்",
+    "roles": [
+      "Web Developer",
+      "Wordpress Developer",
+      "Apk Developer",
+      "React + Vite Developer",
+      "Next Js Developer",
+      "Backend Developer"
+    ],
+    "ready": "உங்கள் புதிய திட்டத்தை கையாள தயாராக இருக்கிறேன்",
+    "description": "React மற்றும் WordPress-இல் நிபுணத்துவம் பெற்ற அனுபவமுள்ள வலை உருவாக்குநர் நான். React.js, Next.js, WordPress, HTML, CSS, JavaScript, Bootstrap, Tailwind CSS போன்ற கருவிகளைப் பயன்படுத்தி பல சாதனங்களில் சிறப்பாக இயங்கும் வலைத்தளங்களையும் வலை பயன்பாடுகளையும் உருவாக்கியுள்ளேன்.",
+    "moreAboutMe": "என்னை பற்றி மேலும்"
+  },
+  "about": {
+    "aboutme":"என்னைப்பற்றி",
+    "description":"As a web developer, I specialize in crafting responsive and user-friendly websites that prioritize an exceptional user experience. I ensure that all projects are optimized for both desktop and mobile devices, delivering seamless functionality across platforms.",
+    "Whatido":"என்னால் முடிந்தவை",
+    "Works": "வேலைகள்"
+  },
+  "services": {
+    "services":"சேவைகள்"
+  },
+  "projects": {
+    "title":"எனது படைப்புகள்",
+    "subtitle":"இவை நான் உருவாக்கிய வலைத்தளங்கள்"
+  },
+  "portfolio": {
+    "title":"பணிகள் தொகுப்பு"
+  },
+  "contact": {
+    "miniheading":"தொடர்பு கொள்ளுங்கள்",
+    "title":"நாம் சேர்ந்து",
+    "title1":"சிறந்த ஒன்றை",
+    "title2":"உருவாக்குவோம்",
+    "description":"உங்கள் திட்டத்தைப் பற்றி சொல்லுங்கள் — 24 மணி நேரத்திற்குள் நான் பதிலளிப்பேன்.",
+    "email":"மின்னஞ்சல்",
+    "phone":"தொலைபேசி",
+    "address":"முகவரி"
+  }
+}

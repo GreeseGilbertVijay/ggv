@@ -254,7 +254,7 @@ export default function ContactForm() {
               />
               <img
                 id="contact-line-image"
-                src="public/favicon.png"
+                src={import.meta.env.BASE_URL + "favicon.png"}
                 alt=""
                 aria-hidden="true"
                 className="w-4 h-4 opacity-0 shrink-0"

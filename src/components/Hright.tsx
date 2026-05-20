@@ -167,7 +167,7 @@ const Hright: React.FC = () => {
           className="relative z-30 w-[70%] md:w-[70%] rounded-full border-8 border-white dark:border-slate-700 shadow-2xl overflow-hidden bg-white dark:bg-slate-800"
         >
           <img
-            src="/GreeseGilbertVijay.png"
+            src="public/GreeseGilbertVijay.png"
             alt="Profile"
             className="w-full h-full object-cover"
           />
@@ -196,7 +196,7 @@ const Hright: React.FC = () => {
             />
             <image
               ref={arrowImageRef}
-              href="/favicon.png"
+              href="public/favicon.png"
               x={arrowX}
               y={arrowY}
               width={25}

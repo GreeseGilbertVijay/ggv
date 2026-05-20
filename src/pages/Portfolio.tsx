@@ -88,7 +88,6 @@ const Portfolio: React.FC = () => {
           />
         
           <span id="persian-cat"></span>
-        
           <span
             id="hamster"
             className="inline-block w-[2px] h-[1em] bg-black dark:bg-yellow-500"

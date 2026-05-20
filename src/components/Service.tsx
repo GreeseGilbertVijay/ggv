@@ -38,7 +38,7 @@ const services = [
   },
   {
     icon: FileText,
-    title: "Blog / Landing Pages",
+    title: "Blogs / Landing Pages",
     description:
       "Individual websites to share personal information, blogs, hobbies, portfolios and contact details.",
   },

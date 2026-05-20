@@ -89,7 +89,7 @@ const Hright: React.FC = () => {
           // FIX: "reset" on leaveBack means the timeline rewinds when
           // the section scrolls out of view — so it replays on re-enter
           // from both top and bottom directions.
-          toggleActions: "play none none reset",
+          toggleActions: "restart none restart reset",
         },
       });
 
@@ -169,7 +169,7 @@ const Hright: React.FC = () => {
           <img
             src={import.meta.env.BASE_URL + "GreeseGilbertVijay.png"}
             alt="Profile"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover profile-pic"
           />
         </div>
 

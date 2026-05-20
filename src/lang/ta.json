@@ -17,7 +17,7 @@
   },
   "about": {
     "aboutme":"என்னைப்பற்றி",
-    "description":"As a web developer, I specialize in crafting responsive and user-friendly websites that prioritize an exceptional user experience. I ensure that all projects are optimized for both desktop and mobile devices, delivering seamless functionality across platforms.",
+    "description":"ஒரு Web Developer ஆக, அழகான மற்றும் பயனர்களுக்கு எளிதாக பயன்படுத்தக்கூடிய Websites உருவாக்குவதில் நான் கவனம் செலுத்துகிறேன். Desktop மற்றும் Mobile சாதனங்களில் சிறப்பாக செயல்படும் Responsive Websites உருவாக்கி, சிறந்த User Experience வழங்குவதையே என் முக்கிய நோக்கமாகக் கொண்டுள்ளேன்.",
     "Whatido":"என்னால் முடிந்தவை",
     "Works": "வேலைகள்"
   },
@@ -25,8 +25,8 @@
     "services":"சேவைகள்"
   },
   "projects": {
-    "title":"எனது படைப்புகள்",
-    "subtitle":"இவை நான் உருவாக்கிய வலைத்தளங்கள்"
+    "title":"நான் Project செய்த நிறுவனங்கள்",
+    "subtitle":"பல நிறுவனங்களுக்கு பல்வேறு Projects செய்து, Development மற்றும் Project execution-ல் அனுபவம் பெற்றேன். Client தேவைகளுக்கு ஏற்ப தரமான solutions வழங்குவதில் வெற்றிகரமாக பங்களித்தேன்."
   },
   "portfolio": {
     "title":"பணிகள் தொகுப்பு"

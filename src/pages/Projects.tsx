@@ -134,7 +134,7 @@ const Projects: React.FC = () => {
       <div className="text-center mb-14 flex flex-col items-center">
         <h2
           ref={titleRef}
-          className="text-3xl sm:text-6xl font-black text-black dark:text-amber-400 flex items-center justify-center gap-0"
+          className="text-2xl sm:text-6xl font-black text-black dark:text-amber-400 flex items-center justify-center gap-0 text-left"
         >
           {/* Animated underline bar */}
           <span
@@ -160,7 +160,7 @@ const Projects: React.FC = () => {
           />
         </h2>
 
-        <p className="text-gray-500 dark:text-slate-400 mt-8">
+        <p className="text-gray-500 dark:text-slate-400 w-[90%] sm:w-[60%] mt-8">
           {t("projects.subtitle")}
         </p>
       </div>

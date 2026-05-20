@@ -72,7 +72,7 @@ const Services: React.FC = () => {
         <section className="grid lg:grid-cols-2">
           <h2
             ref={headingRef}
-            className="text-3xl sm:text-6xl font-black text-black dark:text-amber-400 flex items-center gap-0"
+            className="text-2xl sm:text-6xl font-black text-black dark:text-amber-400 flex items-center gap-0"
           >
             {/* Animated line */}
             <span className="services-line block h-[3px] bg-[#ffb931] dark:bg-amber-400 w-0" />

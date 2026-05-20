@@ -188,7 +188,7 @@ export default function ContactForm() {
   const getInputClass = (name: string) =>
     [
       "w-full bg-transparent border-b-2 py-3 px-0",
-      "text-[15px] outline-none transition-all duration-300 font-sans",
+      "text-[15px] outline-none transition-all duration-300 ",
       // FIX: text color works in both modes (was already correct)
       "text-[#1a1714] dark:text-[#f0ece4]",
       "placeholder-[#b0a89e] dark:placeholder-[#5a554d]",
@@ -244,7 +244,7 @@ export default function ContactForm() {
         >
 
           {/* ── Left: animated heading block ── */}
-          <section className="flex flex-col justify-center" ref={headingRef}>
+          <section className="flex text-2xl sm:text-6xl flex-col justify-center" ref={headingRef}>
 
             {/* Mini-heading row: growing line + icon + scrambled label */}
             <div className="flex items-center gap-3 mb-5">
@@ -262,7 +262,7 @@ export default function ContactForm() {
               {/* Scrambled mini-heading — starts empty, filled by GSAP */}
               <span
                 id="contact-miniheading"
-                className="font-dm text-[12px] tracking-[0.2em] uppercase text-[#9a9088] dark:text-[#a8a29e] font-medium"
+                className=" text-[12px] tracking-[0.2em] uppercase text-[#9a9088] dark:text-[#a8a29e] font-medium"
               />
             </div>
 
@@ -286,7 +286,7 @@ export default function ContactForm() {
               </span>
             </h1>
 
-            <p className="font-dm text-sm text-[#7a7068] dark:text-[#5a554d] font-light tracking-wide leading-relaxed max-w-sm">
+            <p className=" text-sm text-[#7a7068] dark:text-[#5a554d] font-light tracking-wide leading-relaxed max-w-sm">
               {t("contact.description")}
             </p>
           </section>
@@ -360,7 +360,7 @@ export default function ContactForm() {
                 FIX 2: Label was `text-[#6b6560]` — dark-only tone with no light counterpart.
                 Now uses a lighter muted tone in light mode.
               */}
-              <label className="block text-[11px] uppercase tracking-[0.15em] font-semibold mb-1 text-[#9a9088] dark:text-[#6b6560] font-dm">
+              <label className="block text-[11px] uppercase tracking-[0.15em] font-semibold mb-1 text-[#9a9088] dark:text-[#6b6560] ">
                 Purpose
               </label>
               <div className="flex flex-wrap gap-2.5 mt-1">
@@ -372,7 +372,7 @@ export default function ContactForm() {
                       setForm((prev) => ({ ...prev, purpose: prev.purpose === p ? "" : p }))
                     }
                     className={[
-                      "cursor-pointer px-5 py-2 rounded-full border text-[13px] bg-transparent transition-all duration-[250ms] tracking-wide font-dm",
+                      "cursor-pointer px-5 py-2 rounded-full border text-[13px] bg-transparent transition-all duration-[250ms] tracking-wide ",
                       form.purpose === p
                         ? "border-[#c8a96e] text-[#c8a96e] bg-[rgba(200,169,110,0.07)]"
                         /*
@@ -406,7 +406,7 @@ export default function ContactForm() {
                 FIX 4: Counter was `text-[#3d3830]` — nearly invisible in light mode (dark text on light bg is fine,
                 but this specific tone is meant for dark backgrounds). Now muted brown in light, dark in dark.
               */}
-              <div className="text-[11px] text-[#b0a898] dark:text-[#3d3830] text-right mt-1.5 tracking-[0.05em] font-dm">
+              <div className="text-[11px] text-[#b0a898] dark:text-[#3d3830] text-right mt-1.5 tracking-[0.05em] ">
                 {form.message.length} / 1000
               </div>
             </div>
@@ -414,7 +414,7 @@ export default function ContactForm() {
 
           {/* Submit Button */}
           <button
-            className="submit-btn w-full mt-2 px-8 py-[18px] bg-[#c8a96e] text-[#0e0c09] border-none cursor-pointer font-dm text-[13px] font-medium tracking-[0.15em] uppercase transition-all duration-300 relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
+            className="submit-btn w-full mt-2 px-8 py-[18px] bg-[#c8a96e] text-[#0e0c09] border-none cursor-pointer  text-[13px] font-medium tracking-[0.15em] uppercase transition-all duration-300 relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleSubmit}
             disabled={status === "loading"}
             type="button"
@@ -435,13 +435,13 @@ export default function ContactForm() {
 
           {/* Status Messages */}
           {status === "success" && (
-            <div className="mt-5 px-5 py-3.5 rounded-sm border-l-2 border-[#c8a96e] bg-[rgba(200,169,110,0.1)] text-[#c8a96e] font-dm text-[13px] tracking-wide">
+            <div className="mt-5 px-5 py-3.5 rounded-sm border-l-2 border-[#c8a96e] bg-[rgba(200,169,110,0.1)] text-[#c8a96e] text-[13px] tracking-wide">
               ✓ &nbsp; Your message has been sent. I'll be in touch soon.
             </div>
           )}
 
           {status === "error" && errorMsg && (
-            <div className="mt-5 px-5 py-3.5 rounded-sm border-l-2 border-[#c85050] bg-[rgba(200,80,80,0.07)] text-[#c85050] font-dm text-[13px] tracking-wide">
+            <div className="mt-5 px-5 py-3.5 rounded-sm border-l-2 border-[#c85050] bg-[rgba(200,80,80,0.07)] text-[#c85050]  text-[13px] tracking-wide">
               ✕ &nbsp; {errorMsg}
             </div>
           )}

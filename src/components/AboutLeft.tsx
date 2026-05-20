@@ -109,7 +109,7 @@ const AboutLeft: React.FC = () => {
       ref={sectionRef}
       className="w-full"
     >
-      <h3 ref={headingRef} className="bg-[#ffb931] text-black font-black text-2xl inline px-8 py-1 rounded-xl">
+      <h3 ref={headingRef} className="bg-[#ffb931] text-black font-black text-xl inline px-8 py-1 rounded-xl">
       {t("about.Whatido")}
       </h3>
 

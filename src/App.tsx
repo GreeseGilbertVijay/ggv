@@ -4,6 +4,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import Navbar from "./components/Navbar";
 import Index from "./pages/Index";
 import GlobalRightNav from "./components/GlobalRightNav";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 const App: React.FC = () => {
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <BrowserRouter basename="/ggv">
           <Navbar />
           <GlobalRightNav />
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
           </Routes>

@@ -82,7 +82,7 @@ const Portfolio: React.FC = () => {
         
           <img
             id="golden-retriever"
-            src="public/favicon.png"
+            src="/favicon.png"
             alt="About icon"
             className="w-5 h-5 opacity-0 mr-4"
           />

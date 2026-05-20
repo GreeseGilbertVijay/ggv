@@ -12,7 +12,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-    { icon: <Home size={20} />, label: "Home", hash: "#Home" },
+  { icon: <Home size={20} />, label: "Home", hash: "#Home" },
   { icon: <User size={20} />, label: "About", hash: "#About" },
   { icon: <Briefcase size={20} />, label: "Services", hash: "#Services" },
   { icon: <Code2 size={20} />, label: "Projects", hash: "#Projects" },
@@ -20,7 +20,6 @@ const navItems: NavItem[] = [
   { icon: <Mail size={20} />, label: "Contact", hash: "#Contact" },
 ];
 
-// FIX 1: Compute responsive values from a width number — pure function, no direct window access
 const computeResponsiveValues = (width: number) => {
   if (width < 640) {
     return { radius: 130, arrowX: 170, arrowY: 330, svgSize: 360 };
@@ -30,7 +29,6 @@ const computeResponsiveValues = (width: number) => {
   return { radius: 180, arrowX: 240, arrowY: 460, svgSize: 500 };
 };
 
-// FIX 2: Icon positioning as a pure function receiving width — no direct window access
 const getIconStyles = (index: number, total: number, width: number) => {
   const isMobile = width < 640;
   const isTablet = width >= 640 && width < 1024;
@@ -51,14 +49,13 @@ const getIconStyles = (index: number, total: number, width: number) => {
   };
 };
 
-const Pright: React.FC = () => {
+const Hright: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
   const arrowPathRef = useRef<SVGPathElement>(null);
   const arrowImageRef = useRef<SVGImageElement>(null);
 
-  // FIX 3: Track window width in state so the component re-renders on resize
   const [windowWidth, setWindowWidth] = useState<number>(
     typeof window !== "undefined" ? window.innerWidth : 1024
   );
@@ -89,6 +86,10 @@ const Pright: React.FC = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
+          // FIX: "reset" on leaveBack means the timeline rewinds when
+          // the section scrolls out of view — so it replays on re-enter
+          // from both top and bottom directions.
+          toggleActions: "play none none reset",
         },
       });
 
@@ -105,10 +106,13 @@ const Pright: React.FC = () => {
         "-=0.4"
       );
 
-      // FIX 4: Arrow path draw animation — get length after mount
+      // FIX: Use tl.set() instead of gsap.set() so these initial states
+      // are part of the timeline and get reset when ScrollTrigger rewinds.
+      // With gsap.set(), the strokeDashoffset stays at 0 after the first
+      // play, so subsequent replays have nothing to animate.
       if (arrowPathRef.current) {
         const length = arrowPathRef.current.getTotalLength();
-        gsap.set(arrowPathRef.current, {
+        tl.set(arrowPathRef.current, {
           strokeDasharray: length,
           strokeDashoffset: length,
         });
@@ -120,7 +124,7 @@ const Pright: React.FC = () => {
       }
 
       if (arrowImageRef.current) {
-        gsap.set(arrowImageRef.current, {
+        tl.set(arrowImageRef.current, {
           scale: 0,
           opacity: 0,
           transformOrigin: "50% 50%",
@@ -134,9 +138,8 @@ const Pright: React.FC = () => {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []); // Run once on mount — GSAP reads DOM values at animation time
+  }, []);
 
-  // FIX 5: Derive responsive values from state, not window directly
   const { radius, arrowX, arrowY, svgSize } = computeResponsiveValues(windowWidth);
   const cx = svgSize / 2;
 
@@ -146,14 +149,16 @@ const Pright: React.FC = () => {
       className="relative flex items-center justify-center w-full overflow-hidden py-12"
     >
       <style>{`
-       .height{
+        .height {
           height: 500px;
         }
-      @media (max-width: 639px) {
-        .height{
-          height: 400px;
+        @media (max-width: 639px) {
+          .height {
+            height: 400px;
+          }
         }
       `}</style>
+
       <div className="height relative flex items-center justify-center pr-8 w-[500px]">
 
         {/* Profile */}
@@ -161,9 +166,8 @@ const Pright: React.FC = () => {
           ref={profileRef}
           className="relative z-30 w-[70%] md:w-[70%] rounded-full border-8 border-white dark:border-slate-700 shadow-2xl overflow-hidden bg-white dark:bg-slate-800"
         >
-          {/* FIX 6: Use a relative/public path or accept it as a prop */}
           <img
-            src="public/GreeseGilbertVijay.png"
+            src="/GreeseGilbertVijay.png"
             alt="Profile"
             className="w-full h-full object-cover"
           />
@@ -181,7 +185,6 @@ const Pright: React.FC = () => {
             viewBox={`0 0 ${svgSize} ${svgSize}`}
             className="absolute z-0 pointer-events-none"
           >
-            {/* FIX 7: Arc uses computed cx and radius correctly */}
             <path
               ref={arrowPathRef}
               d={`M ${cx} ${svgSize * 0.05} A ${radius} ${radius} 0 0 1 ${cx} ${svgSize * 0.95}`}
@@ -193,7 +196,7 @@ const Pright: React.FC = () => {
             />
             <image
               ref={arrowImageRef}
-              href="public/favicon.png"
+              href="/favicon.png"
               x={arrowX}
               y={arrowY}
               width={25}
@@ -207,7 +210,6 @@ const Pright: React.FC = () => {
             <div
               key={item.label}
               className="absolute group z-20"
-              // FIX 8: Pass windowWidth into icon style calculator
               style={getIconStyles(index, navItems.length, windowWidth)}
               onClick={() => scrollToSection(item.hash)}
             >
@@ -222,11 +224,9 @@ const Pright: React.FC = () => {
                 {item.icon}
               </div>
 
-              {/* FIX 9: Tooltip — flip to left side for icons on left half to avoid overflow */}
               <span className="
                 absolute top-1/2 -translate-y-1/2
                 left-full ml-2
-                group-hover:left-full group-hover:right-auto
                 px-2 py-1 bg-slate-800 dark:bg-slate-600 text-white text-[10px]
                 rounded opacity-0 group-hover:opacity-100
                 transition-all whitespace-nowrap pointer-events-none z-50
@@ -241,4 +241,4 @@ const Pright: React.FC = () => {
   );
 };
 
-export default Pright;
+export default Hright;

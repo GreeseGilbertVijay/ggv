@@ -189,12 +189,15 @@ export default function ContactForm() {
     [
       "w-full bg-transparent border-b-2 py-3 px-0",
       "text-[15px] outline-none transition-all duration-300 font-sans",
+      // FIX: text color works in both modes (was already correct)
       "text-[#1a1714] dark:text-[#f0ece4]",
       "placeholder-[#b0a89e] dark:placeholder-[#5a554d]",
       fieldState.focused === name
         ? "border-[#c8a96e]"
         : fieldState.touched[name]
+        // FIX: touched border now has both light and dark values
         ? "border-[#c0b8b0] dark:border-[#3d3830]"
+        // FIX: untouched border now has both light and dark values (was already correct)
         : "border-[#ddd8d0] dark:border-[#2a2520]",
     ].join(" ");
 
@@ -203,6 +206,7 @@ export default function ContactForm() {
       "block text-[11px] uppercase tracking-[0.15em] font-semibold mb-1.5 transition-colors duration-300 font-sans",
       fieldState.focused === name
         ? "text-[#c8a96e]"
+        // FIX: unfocused label now has both light and dark values (was already correct)
         : "text-[#9a9088] dark:text-[#6b6560]",
     ].join(" ");
 
@@ -229,7 +233,11 @@ export default function ContactForm() {
         .dot-3 { animation: dotPulse 1.2s infinite 0.4s; }
       `}</style>
 
-      <div className="bg-slate-900 transition-colors">
+      {/*
+        FIX 1: Was `bg-slate-900` — hardcoded dark, ignoring light mode entirely.
+        Now uses a warm off-white in light mode and near-black in dark mode.
+      */}
+      <div className="bg-[#f5f1eb] dark:bg-[#0e0c09] transition-colors duration-300">
         <div
           className="w-full max-w-7xl mx-auto grid gap-16 px-6 py-16 sm:px-10 sm:py-20 md:grid-cols-1 lg:grid-cols-[44%_52%] lg:gap-12"
           ref={formRef}
@@ -246,7 +254,7 @@ export default function ContactForm() {
               />
               <img
                 id="contact-line-image"
-                src="public/favicon.png"
+                src="/favicon.png"
                 alt=""
                 aria-hidden="true"
                 className="w-4 h-4 opacity-0 shrink-0"
@@ -254,7 +262,7 @@ export default function ContactForm() {
               {/* Scrambled mini-heading — starts empty, filled by GSAP */}
               <span
                 id="contact-miniheading"
-                className="font-dm text-[12px] tracking-[0.2em] uppercase text-[#9a9088] dark:text-[#a8a29e] font-medium "
+                className="font-dm text-[12px] tracking-[0.2em] uppercase text-[#9a9088] dark:text-[#a8a29e] font-medium"
               />
             </div>
 
@@ -348,10 +356,14 @@ export default function ContactForm() {
 
             {/* Purpose - full width */}
             <div className="col-span-2 mb-8">
-              <label className="block text-[11px] uppercase tracking-[0.15em] font-semibold mb-1 text-[#6b6560] font-dm">
+              {/*
+                FIX 2: Label was `text-[#6b6560]` — dark-only tone with no light counterpart.
+                Now uses a lighter muted tone in light mode.
+              */}
+              <label className="block text-[11px] uppercase tracking-[0.15em] font-semibold mb-1 text-[#9a9088] dark:text-[#6b6560] font-dm">
                 Purpose
               </label>
-              <div className="flex gap-2.5 mt-1">
+              <div className="flex flex-wrap gap-2.5 mt-1">
                 {(["Wordpress", "Shopify", "React & Next", "Website", "App", "Other"] as Purpose[]).map((p) => (
                   <button
                     key={p}
@@ -363,7 +375,12 @@ export default function ContactForm() {
                       "cursor-pointer px-5 py-2 rounded-full border text-[13px] bg-transparent transition-all duration-[250ms] tracking-wide font-dm",
                       form.purpose === p
                         ? "border-[#c8a96e] text-[#c8a96e] bg-[rgba(200,169,110,0.07)]"
-                        : "border-[#2a2520] text-[#6b6560] hover:border-[#4a4540] hover:text-[#a09890]",
+                        /*
+                          FIX 3: Pill neutral state was dark-only:
+                            border-[#2a2520] text-[#6b6560] hover:border-[#4a4540] hover:text-[#a09890]
+                          Now has both light and dark values.
+                        */
+                        : "border-[#d8d0c8] dark:border-[#2a2520] text-[#7a7068] dark:text-[#6b6560] hover:border-[#b0a898] dark:hover:border-[#4a4540] hover:text-[#4a4540] dark:hover:text-[#a09890]",
                     ].join(" ")}
                   >
                     {p}
@@ -385,7 +402,11 @@ export default function ContactForm() {
                 onFocus={() => handleFocus("message")}
                 onBlur={() => handleBlur("message")}
               />
-              <div className="text-[11px] text-[#3d3830] text-right mt-1.5 tracking-[0.05em] font-dm">
+              {/*
+                FIX 4: Counter was `text-[#3d3830]` — nearly invisible in light mode (dark text on light bg is fine,
+                but this specific tone is meant for dark backgrounds). Now muted brown in light, dark in dark.
+              */}
+              <div className="text-[11px] text-[#b0a898] dark:text-[#3d3830] text-right mt-1.5 tracking-[0.05em] font-dm">
                 {form.message.length} / 1000
               </div>
             </div>

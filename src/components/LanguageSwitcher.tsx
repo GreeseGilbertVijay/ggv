@@ -35,7 +35,7 @@ const LanguageSwitcher: React.FC = () => {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 shadow-lg dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+        className="flex items-center cursor-pointer gap-2 px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 shadow-lg dark:shadow-slate-900/50 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
         aria-label="Change language"
         aria-expanded={isOpen}
       >
@@ -54,7 +54,7 @@ const LanguageSwitcher: React.FC = () => {
               key={lang.code}
               type="button"
               onClick={() => handleLanguageChange(lang.code)}
-              className={`w-full px-4 py-3 text-left text-sm transition-colors ${
+              className={`w-full px-4 py-3 text-left text-sm transition-colors cursor-pointer ${
                 language === lang.code
                   ? "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 font-semibold"
                   : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700"

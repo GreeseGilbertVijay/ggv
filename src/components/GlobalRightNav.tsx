@@ -442,7 +442,7 @@ const GlobalRightNav: React.FC = () => {
   return (
     <div
       ref={navRef}
-      className="fixed right-6 top-1/2 -translate-y-1/2 z-50 w-[70px] flex justify-center items-center opacity-0"
+      className="md:flex fixed right-[0px] top-1/2 -translate-y-1/2 z-50 w-[70px] justify-center items-center opacity-0"
       style={{ pointerEvents: "none" }}
     >
       <div className="relative w-full h-[560px] flex justify-center items-center">

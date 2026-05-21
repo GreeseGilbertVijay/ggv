@@ -47,6 +47,7 @@ const services = [
 const Service: React.FC = () => {
   const headingRefs = useRef<HTMLHeadingElement[]>([]);
   const paragraphRefs = useRef<HTMLParagraphElement[]>([]);
+  const cardRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -95,51 +96,149 @@ const Service: React.FC = () => {
           }
         );
       });
+
+      // Animate border line on hover using GSAP
+      cardRefs.current.forEach((card) => {
+        if (!card) return;
+        const line = card.querySelector<HTMLElement>(".hover-line");
+        if (!line) return;
+
+        // Set initial state — line starts at bottom, 0 height
+        gsap.set(line, { height: 0, bottom: 0, top: "auto" });
+
+        const enterAnim = gsap.to(line, {
+          height: "80%",
+          duration: 0.6,
+          ease: "power2.out",
+          paused: true,
+        });
+
+        const leaveAnim = gsap.to(line, {
+          height: 0,
+          duration: 0.4,
+          ease: "power2.in",
+          paused: true,
+        });
+
+        card.addEventListener("mouseenter", () => {
+          leaveAnim.pause();
+          enterAnim.restart();
+        });
+
+        card.addEventListener("mouseleave", () => {
+          enterAnim.pause();
+          leaveAnim.restart();
+        });
+      });
     });
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className="w-full mt-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Services Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={index}
-                className="bg-white dark:bg-slate-900
-                           border border-gray-200 dark:border-slate-700
-                           rounded-2xl p-6
-                           hover:shadow-lg transition"
-              >
-                <Icon className="w-8 h-8 text-[#ffb931] mb-4" />
+    <>
+      <style>{`
+        /* ── Glassmorphism card ── */
+        .glass-card {
+          /* Light mode glass */
+          background: rgba(255, 255, 255, 0.45);
+          backdrop-filter: blur(14px) saturate(160%);
+          -webkit-backdrop-filter: blur(14px) saturate(160%);
+          border: 1px solid rgba(255, 255, 255, 0.6);
+          box-shadow:
+            0 4px 24px rgba(0, 0, 0, 0.06),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
 
-                <h4
-                  ref={(el) => {
-                    if (el) headingRefs.current[index] = el;
-                  }}
-                  className="text-lg font-bold mb-2"
-                >
-                  {service.title}
-                </h4>
+        /* Dark mode glass */
+        .dark .glass-card {
+          background: rgba(15, 23, 42, 0.45);
+          backdrop-filter: blur(14px) saturate(180%);
+          -webkit-backdrop-filter: blur(14px) saturate(180%);
+          border: 1px solid rgba(255, 255, 255, 0.07);
+          box-shadow:
+            0 4px 32px rgba(0, 0, 0, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
 
-                <p
+        /* ── Hover left border line ── */
+        .hover-line {
+          position: absolute;
+          left: -1px;        /* sits flush on the card's left border */
+          bottom: 0;
+          width: 2px;
+          height: 0;
+          background: #ffb931;
+          border-radius: 2px;
+          pointer-events: none;
+        }
+
+        /* Slight glow on the accent line */
+        .glass-card:hover .hover-line {
+          box-shadow: 0 0 8px rgba(255, 185, 49, 0.6);
+        }
+
+        /* Card lift on hover */
+        .glass-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+          transform: translateY(-4px);
+        }
+        .dark .glass-card:hover {
+          box-shadow:
+            0 8px 40px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.07);
+        }
+        .glass-card:hover {
+          box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+      `}</style>
+
+      <section className="w-full mt-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <div
+                  key={index}
                   ref={(el) => {
-                    if (el) paragraphRefs.current[index] = el;
+                    if (el) cardRefs.current[index] = el;
                   }}
-                  className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
+                  className="glass-card relative rounded-2xl p-6 overflow-hidden"
                 >
-                  {service.description}
-                </p>
-              </div>
-            );
-          })}
+                  {/* Animated left border line */}
+                  <div className="hover-line" />
+
+                  <Icon className="w-8 h-8 text-[#ffb931] mb-4" />
+
+                  <h4
+                    ref={(el) => {
+                      if (el) headingRefs.current[index] = el;
+                    }}
+                    className="text-lg font-bold mb-2 text-gray-900 dark:text-white"
+                  >
+                    {service.title}
+                  </h4>
+
+                  <p
+                    ref={(el) => {
+                      if (el) paragraphRefs.current[index] = el;
+                    }}
+                    className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed"
+                  >
+                    {service.description}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

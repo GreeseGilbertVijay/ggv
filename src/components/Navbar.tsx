@@ -120,7 +120,7 @@ const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl bg-white/70 dark:bg-slate-800/70 border border-white/40 dark:border-slate-700/60 shadow-md text-slate-700 dark:text-slate-200 hover:scale-105 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900 backdrop-blur-sm"
+              className="p-2.5 rounded-xl bg-white/70 dark:bg-slate-800/70 border cursor-pointer border-white/40 dark:border-slate-700/60 shadow-md text-slate-700 dark:text-slate-200 hover:scale-105 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 dark:focus:ring-offset-slate-900 backdrop-blur-sm"
               aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             >
               {theme === "dark" ? (
@@ -130,7 +130,7 @@ const Navbar: React.FC = () => {
               )}
             </button>
             {/* Language Switcher */}
-            <div className="max-lg:hidden">
+            <div className="max-lg:hidden cursor-pointer">
               <LanguageSwitcher />
             </div>
 
@@ -138,7 +138,7 @@ const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setMobileOpen((prev) => !prev)}
-              className="lg:hidden p-2.5 rounded-xl bg-white/70 dark:bg-slate-800/70 border border-white/40 dark:border-slate-700/60 shadow-md text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 backdrop-blur-sm"
+              className="lg:hidden p-2.5 rounded-xl cursor-pointer bg-white/70 dark:bg-slate-800/70 border border-white/40 dark:border-slate-700/60 shadow-md text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 backdrop-blur-sm"
               aria-label="Toggle menu"
               aria-expanded={mobileOpen}
             >

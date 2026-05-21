@@ -8,7 +8,7 @@ const TAG_CONFIG: Record<string, { label: string; color: string }> = {
   "Wordpress":   { label: "Wordpresss",     color: "bg-violet-500/10 text-violet-600 border-violet-500/20 dark:text-violet-300" },
   "Shopify":     { label: "Shopify",        color: "bg-emerald-500/10 text-emerald-700 border-emerald-500/30 dark:text-emerald-400 dark:border-emerald-500/30 dark:bg-emerald-500/10" },
   "App":         { label: "Applications",   color: "bg-sky-500/10 text-sky-600 border-sky-500/20 dark:text-sky-400" },
-  "React & Next":{ label: "React & Next",   color: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:text-emerald-400" },
+  "React & Next":{ label: "React & Next",   color: "bg-orange-500/10 text-orange-600 border-orange-500/20 dark:text-orange-400" },
 };
 
 const ALL_CARDS: Card[] = [
@@ -16,7 +16,7 @@ const ALL_CARDS: Card[] = [
     image: "spincotech.png" },
   { title: "leaf'n Protein",  tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,      
     image: "leafnprotein.png" },
-  { title: "Samatva Awareness",    tag: "React & Next", color: TAG_CONFIG["App"].color,           
+  { title: "Samatva Awareness",    tag: "React & Next", color: TAG_CONFIG["React & Next"].color,           
     image: "samatva.png" },
   { title: "CuttingEdge",    tag: "App", color: TAG_CONFIG["App"].color,           
     image: "cuttingedge.jpeg" },
@@ -145,7 +145,7 @@ const TAB_GLOW: Record<string, string> = {
   "Wordpress":   "rgba(139,92,246,0.35)",
   "App":         "rgba(56,189,248,0.35)",
   "Shopify":     "rgba(52,211,153,0.35)",
-  "React & Next":"rgba(52,211,153,0.35)",
+  "React & Next":"rgba(211, 142, 52, 0.35)",
 };
 
 export default function Tabs() {

@@ -4,6 +4,7 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLanguage } from "../context/LanguageContext";
 import Service from "../components/Service";
+import { useTheme } from "../context/ThemeContext";
 
 gsap.registerPlugin(ScrambleTextPlugin, ScrollTrigger);
 
@@ -11,6 +12,7 @@ const Services: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const { t } = useLanguage();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -66,7 +68,13 @@ const Services: React.FC = () => {
   return (
     <div
       ref={sectionRef}
-      className="bg-white dark:bg-slate-900 text-black dark:text-white transition-colors"
+      className="relative text-black dark:text-white border-t border-gray-200 dark:border-slate-700 transition-colors bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage:
+          theme === "dark"
+            ? `url('${import.meta.env.BASE_URL}portfolio-bgblack.jpg')`
+            : `url('${import.meta.env.BASE_URL}portfolio-bgwhite.jpg')`,
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 pb-12 pt-12">
         <section className="grid lg:grid-cols-2">

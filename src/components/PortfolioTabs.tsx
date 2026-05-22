@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 
-type Card = { title: string; tag: string; color: string; image: string };
+type Card = { title: string; tag: string; color: string; image: string; link: string };
 
 const TAG_CONFIG: Record<string, { label: string; color: string }> = {
   "Wordpress":   { label: "Wordpresss",     color: "bg-violet-500/10 text-violet-600 border-violet-500/20 dark:text-violet-300" },
@@ -12,52 +12,30 @@ const TAG_CONFIG: Record<string, { label: string; color: string }> = {
 };
 
 const ALL_CARDS: Card[] = [
-  { title: "Spincotech",  tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,      
-    image: "spincotech.jpg" },
-  { title: "leaf'n Protein",  tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,      
-    image: "leafnprotein.jpg" },
-  { title: "Samatva Awareness",    tag: "React & Next", color: TAG_CONFIG["React & Next"].color,           
-    image: "samatva.jpg" },
-  { title: "CuttingEdge",    tag: "App", color: TAG_CONFIG["App"].color,           
-    image: "cuttingedge.jpeg" },
-  { title: "NextVant",    tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,  
-    image: "nextvant.jpg" },
-  { title: "Velonae",    tag: "Shopify", color: TAG_CONFIG["Shopify"].color,  
-    image: "velonae.jpg" },
-  { title: "Zippyy",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,      
-    image: "zippyy.jpg" },
-  { title: "adesignz",    tag: "Wordpress",  color: TAG_CONFIG["Wordpress"].color,
-    image: "adesignz.jpg" },
-  { title: "CLOUD NINE COTTAGES",    tag: "Wordpress",  color: TAG_CONFIG["Wordpress"].color,
-    image: "cloudninecottages.jpg" },
-  { title: "RENOVAR LABS",    tag: "Wordpress",  color: TAG_CONFIG["Wordpress"].color,
-    image: "renovarlabs.jpg" },
-  { title: "AVIAWIZ",    tag: "Wordpress", color: TAG_CONFIG["React & Next"].color,
-    image: "aviawiz.jpg" },
-  { title: "Cakesquare Chennai",  tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color, 
-    image: "cakesquare.jpg" },
-  { title: "MagikStar",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,
-    image: "magikstar.jpg" },
-  { title: "A1 Loans",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,
-    image: "a1loans.jpg" },
-  { title: "OneSight",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,
-    image: "onesight.jpg" },
-  { title: "Pranavam",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,
-    image: "pranavam.jpg" },
-  { title: "Pravda",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,
-    image: "pravda.jpg" },
-  { title: "Sonali Raman",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,
-    image: "sonaliraman.jpg" },
-  { title: "Sparsa Resorts",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,
-    image: "sparsa.jpg" },
-  { title: "TaxKey",      tag: "Wordpress", color: TAG_CONFIG["Wordpress"].color,
-    image: "taxkey.jpg" },
-  { title: "MatchMyFit",    tag: "App", color: TAG_CONFIG["App"].color,
-    image: "matchmyfit.jpeg" },
-  { title: "Soiltec",    tag: "App", color: TAG_CONFIG["App"].color,           
-    image: "soiltec.jpeg" },
-    { title: "Wonchance",    tag: "Wordpress",  color: TAG_CONFIG["Wordpress"].color,           
-    image: "wonchance.jpg" },
+  { title: "Spincotech",          tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "spincotech.jpg",         link: "https://spincotech.tempurl.host/" },
+  { title: "leaf'n Protein",      tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "leafnprotein.jpg",       link: "https://leafnprotein.com/" },
+  { title: "Samatva Awareness",   tag: "React & Next",color: TAG_CONFIG["React & Next"].color, image: "samatva.jpg",            link: "https://samatvaawareness.in/" },
+  { title: "A2Z Invitations",     tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "a2zinvitations.jpg",     link: "http://a2zinvitations.com/" },
+  { title: "NextVant",            tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "nextvant.jpg",           link: "https://nextvant.com/" },
+  { title: "Velonae",             tag: "Shopify",     color: TAG_CONFIG["Shopify"].color,      image: "velonae.jpg",            link: "https://velonae.com/" },
+  { title: "Zippyy",              tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "zippyy.jpg",             link: "https://zippyy.ai/" },
+  { title: "adesignz",            tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "adesignz.jpg",           link: "https://adesignz.co/" },
+  { title: "CLOUD NINE COTTAGES", tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "cloudninecottages.jpg",  link: "https://wp.cloudnineparadise.com/" },
+  { title: "RENOVAR LABS",        tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "renovarlabs.jpg",        link: "https://renovarlabs.com/" },
+  { title: "AVIAWIZ",             tag: "Wordpress",   color: TAG_CONFIG["React & Next"].color, image: "aviawiz.jpg",            link: "https://aviawiz.com/" },
+  { title: "Cakesquare Chennai",  tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "cakesquare.jpg",         link: "https://cakesquare.com/" },
+  { title: "MagikStar",           tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "magikstar.jpg",          link: "https://www.magikstar.com/" },
+  { title: "A1 Loans",            tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "a1loans.jpg",            link: "https://a1loans.in/" },
+  { title: "OneSight",            tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "onesight.jpg",           link: "https://onesighttech.com/" },
+  { title: "Pranavam",            tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "pranavam.jpg",           link: "https://pranavam.co/" },
+  { title: "Pravda",              tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "pravda.jpg",             link: "https://pravdalawassociates.com/" },
+  { title: "Sonali Raman",        tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "sonaliraman.jpg",        link: "https://sonaliraman.com/" },
+  { title: "Sparsa Resorts",      tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "sparsa.jpg",             link: "https://sparsaresorts.com/" },
+  { title: "TaxKey",              tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "taxkey.jpg",             link: "https://taxkey.in/" },
+  { title: "MatchMyFit",          tag: "App",         color: TAG_CONFIG["App"].color,          image: "matchmyfit.jpeg",        link: "" },
+  { title: "Soiltec",             tag: "App",         color: TAG_CONFIG["App"].color,          image: "soiltec.jpeg",           link: "" },
+    { title: "CuttingEdge",         tag: "App",         color: TAG_CONFIG["App"].color,        image: "cuttingedge.jpeg",       link: "" },
+  { title: "Wonchance",           tag: "Wordpress",   color: TAG_CONFIG["Wordpress"].color,    image: "wonchance.jpg",          link: "https://wonchance.com/" },
 ];
 
 // Derive tabs dynamically from tags
@@ -214,9 +192,12 @@ export default function Tabs() {
           {visible.map((card, i) => {
             const glowColor = TAB_GLOW[card.tag] ?? "rgba(139,92,246,0.3)";
             return (
-              <div
+              <a
                 key={`${active}-${i}`}
-                className="group relative rounded-xl border cursor-pointer
+                href={card.link || undefined}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative rounded-xl border cursor-pointer block
                   border-gray-200 bg-gray-50
                   dark:border-white/[0.07] dark:bg-white/[0.03]
                   p-4 sm:p-6
@@ -224,7 +205,6 @@ export default function Tabs() {
                   dark:hover:border-white/[0.14] dark:hover:bg-white/[0.06]
                   transition-all duration-300 card-glow-box"
                 style={{
-                  /* CSS custom property for the glow color so the stylesheet can use it */
                   ["--glow-color" as string]: glowColor,
                 }}
               >
@@ -240,7 +220,7 @@ export default function Tabs() {
                 <h3 className="text-sm sm:text-base font-semibold text-gray-800 group-hover:text-gray-900 dark:text-zinc-100 dark:group-hover:text-white transition-colors leading-tight">
                   {card.title}
                 </h3>
-              </div>
+              </a>
             );
           })}
         </div>
